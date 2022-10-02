@@ -13,19 +13,26 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
-     stage('Docker version'){
-            steps{
-                script{
-                    bat 'docker --version' 
-                }
-            }
-        }
+     
      stage('Build docker image'){
             steps{
                 script{
                     bat 'docker build -t mendozacorp/anime-devops-integration .' 
                 }
             }
-        }      
+        }
+        
+        
+        stage('Push docker image'){
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'docker-hub-password', variable: 'dockerhub-pwd')]) {
+                       bat 'docker login -u jmendoza4633 -p ${dockerhub-pwd}'
+                    }
+                    bat 'docker push jmendoza4633/anime-corp-repository'
+                }
+            }
+        }
+        
     }
 }
