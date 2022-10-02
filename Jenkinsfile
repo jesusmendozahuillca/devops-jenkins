@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'mave-3.6.3'
+        maven 'maven-3.6.3'
     }
     options {
         skipDefaultCheckout()
