@@ -26,7 +26,9 @@ pipeline {
         stage('Push docker image'){
             steps{
                 script{
-                    bat 'docker login -u jmendoza4633 -p SuperGirl2020'
+                    withCredentials([string(credentialsId: 'dockerhubpassword', variable: 'dockerhubpassword')]) {
+                       bat 'docker login -u jmendoza4633 -p ${dockerhubpassword}'
+                    }
                     bat 'docker push jmendoza4633/anime-corp-repository'
                 }
             }
