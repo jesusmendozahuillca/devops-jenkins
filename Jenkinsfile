@@ -16,14 +16,14 @@ pipeline {
      stage('Docker version'){
             steps{
                 script{
-                    sh 'docker --version' 
+                    bat 'docker --version' 
                 }
             }
         }
      stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t mendozacorp/anime-devops-integration .' 
+                    bat 'docker build -t mendozacorp/anime-devops-integration .' 
                 }
             }
         }      
