@@ -17,7 +17,7 @@ pipeline {
      stage('Build docker image'){
             steps{
                 script{
-                    bat 'docker build -t mendozacorp/anime-devops-integration:animev2 .' 
+                    bat 'docker build -t jmendoza4633/anime-corp-repository:animev2 .' 
                 }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
             steps{
                 script{
                     bat 'docker login -u jmendoza4633 -p SuperGirl2020'
-                    bat 'docker push mendozacorp/anime-devops-integration:animev2'
+                    bat 'docker push jmendoza4633/anime-corp-repository:animev2'
                 }
             }
         }
