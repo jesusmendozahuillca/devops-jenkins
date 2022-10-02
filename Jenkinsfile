@@ -27,7 +27,7 @@ pipeline {
             steps{
                 script{
                     bat 'docker login -u jmendoza4633 -p SuperGirl2020'
-                    bat 'docker push jmendoza4633/anime-corp-repository'
+                    bat 'docker push mendozacorp/anime-devops-integration:animev2'
                 }
             }
         }
