@@ -27,5 +27,12 @@ pipeline {
                 }
             }
         }
+        stage('Docker version2'){
+            steps{
+                script{
+                    sh 'docker --version' 
+                }
+            }
+        }
     }
 }
