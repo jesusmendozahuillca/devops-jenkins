@@ -17,7 +17,7 @@ pipeline {
      stage('Build docker image'){
             steps{
                 script{
-                    bat 'docker build -t mendozacorp/anime-devops-integration .' 
+                    bat 'docker build -t mendozacorp/anime-devops-integration:animev2 .' 
                 }
             }
         }
