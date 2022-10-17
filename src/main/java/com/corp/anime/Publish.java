@@ -9,7 +9,7 @@ public class Publish {
 	
 	@GetMapping("anime")
 	public String getAnime() {
-		return "Naruto";
+		return "Naruto Uzumaki";
 	}
 	
 }
