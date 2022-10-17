@@ -27,8 +27,7 @@ pipeline {
             steps{
                 script{
                     sh 'docker container ls --all'
-                    sh 'docker stop anime-container'
-                    sh 'docker rm anime-container'
+                    sh 'docker stop anime-container || true && docker rm anime-container || true'
                     sh 'docker run -d --name animes-container -p9000:8080 imagen-corp-anime ' 
                 }
             }
