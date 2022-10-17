@@ -3,34 +3,37 @@ pipeline {
     tools {
         maven 'maven-3.6.3'
     }
-    options {
-        skipDefaultCheckout()
-    }
     stages{
-    	stage('Build Maven'){
+    	stage('git checkout'){
+
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jesusmendozahuillca/devops-jenkins.git']]])
-                bat 'mvn clean install'
+                git branch: 'main', url: 'https://github.com/jesusmendozahuillca/devops-jenkins.git'
             }
         }
-     
-     stage('Build docker image'){
+      stage('Maven Install'){
+
+            steps{
+                sh 'mvn clean install'
+            }
+        }    
+       stage('Build docker image'){
             steps{
                 script{
-                    bat 'docker build -t jmendoza4633/anime-corp-repository:animev2 .' 
+                    sh 'docker build -t imagen-corp-anime .' 
+                }
+            }
+        }
+        stage('Run docker image'){
+            steps{
+                script{
+                    sh 'docker container ls --all'
+                    sh 'docker stop anime-container'
+                    sh 'docker rm anime-container'
+                    sh 'docker run -d --name animes-container -p9000:8080 imagen-corp-anime ' 
                 }
             }
         }
         
-        
-        stage('Push docker image'){
-            steps{
-                script{
-                    bat 'docker login -u jmendoza4633 -p SuperGirl2020'
-                    bat 'docker push jmendoza4633/anime-corp-repository:animev2'
-                }
-            }
-        }
         
     }
 }
